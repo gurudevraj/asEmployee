@@ -1,0 +1,6 @@
+failiure note
+
+28-12-18/15:00
+problem: fail to find a file name of respective field
+reason: lack of knowledge in the field of API
+action:

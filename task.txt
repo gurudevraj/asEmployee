@@ -1,0 +1,282 @@
+1 diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/scss/_new_page_styles.scss b/drupal-7.9/sites/rodin/themes/rodin_base/scss/_    new_page_styles.scss
+  2 new file mode 100644
+  3 index 0000000..85319bf
+  4 --- /dev/null
+  5 +++ b/drupal-7.9/sites/rodin/themes/rodin_base/scss/_new_page_styles.scss
+  6 @@ -0,0 +1,109 @@
+  7 +/* header */
+  8 +.header {
+  9 +  margin-bottom: 40px;
+ 10 +}
+ 11 +
+ 12 +.header__content {
+ 13 +  width: 100%;
+ 14 +}
+ 15 +
+ 16 +.header__image {
+ 17 +  width: 100%;
+ 18 +}
+ 19 +
+ 20 +.header__description {
+ 21 + margin-top: 0;
+ 22 +}
+ 23 +
+ 24 +.header__title {
+ 25 +  font-size: 50px;
+ 26 +  font-weight: bold;
+ 27 +  text-transform: uppercase;
+ 28 +  line-height: 1.2;
+ 29 +  margin-top: -25px;
+ 30 +}
+ 31 +
+ 32 +.header__caption {
+ 33 +  font-size: 15px;
+ 34 +  padding: 0 10px;
+ 35 +}
+ 36 +
+ 37 +/* main content */
+ 38 +
+ 39 +.main-content {
+ 40 +  overflow: hidden;
+ 41 +  position: relative;
+ 42 +}
+ 43 +
+ 44 +.main-content__block2 {
+ 45 +  display: inline-block;
+ 46 +  width: 50%;
+ 47 +  float:right;
+ 48 +
+ 49 +}
+ 50 +
+ 51 +.main-content__image2 {
+ 52 +  width:100%;
+ 53 +}
+ 54 +
+ 55 +.main-content__block1 {
+ 56 +  display: inline-block;
+ 57 +  width: 50%;
+ 58 +  font-size: 15px;
+ 59 +}
+ 60 +
+ 61 +.main-content__image1 {
+ 62 +  width: 100%;
+ 63 +}
+ 64 +
+ 65 +.main-content__sections {
+ 66 +  margin-top: 20px;
+ 67 +}
+ 68 +
+ 69 +.align_right {
+ 70 +  float:right;
+ 71 +}
+ 72 +
+ 73 +.yes {
+ 74 +  position: absolute;
+ 75 +  top:50%;
+ 76 +  left: 50%;
+ 77 +  transform: translate(12.5%, -50%);
+ 78 +  width: 40%;
+ 79 +}
+ 80 +
+ 81 +@media only screen and (max-width: 768px) {
+ 82 +
+ 83 +.main-content__block2 {
+ 84 +  width: 100%;
+ 85 +  float: none;
+ 86 +}
+ 87 +
+ 88 +.main-content__block1 {
+ 89 +  width: 100%;
+ 90 +}
+ 91 +
+ 92 +.mobile-hidden {
+ 93 +  display: none;
+ 94 +}
+ 95 +
+ 96 +.yes {
+ 97 +  transform: none;
+ 98 +  padding: 15px;
+ 99 +  position: static;
+100 +}
+101 +
+102 +.main-content {
+103 +  position: static;
+104 +}
+105 +
+106 +.header__title {
+107 +  font-size: 25px;
+108 +  margin-top: 0;
+109 +}
+110 +
+111 +.main-content__sections {
+112 +  padding: 0 10px;
+113 +}
+114 +
+115 +}
+116 diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_header/template_for_header.inc b/drupal-    7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_header/template_for_header.inc
+117 new file mode 100644
+118 index 0000000..4530a29
+119 --- /dev/null
+120 +++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_header/template_for_header.inc
+121 @@ -0,0 +1,34 @@
+122 +<?php
+123 +
+124 +return array(
+125 +  'renderer' => 'mustache',
+126 +  'name' => 'template_for_header',
+127 +  'label' => 'sample Template for header',
+128 +  'description' => 'sample Template for main content',
+129 +  'owner_type' => 'domain',
+130 +  'owner' => '2',
+131 +  'template_type' => 'General',
+132 +  'inputs' => array(
+133 +    'image' => array(
+134 +      'label' => 'Image - Maximum size recommended: 1280px x 600px',
+135 +      'type' => 'image',
+136 +    ),
+137 +       'title' => array(
+138 +      'label' => 'Title of the content',
+139 +      'type' => 'elc_text_format',
+140 +      'description' => 'example: rodin',
+141 +    ),
+142 +    'intro' => array(
+143 +      'label' => 'about title',
+144 +      'type' => 'elc_text_format',
+145 +      'description' => 'content for the introduction',
+146 +    ),
+147 +  ),
+148 +  'tags' => array(
+149 +    'device-responsive',
+150 +    'contenttype-page',
+151 +    'contenttype-elc_nodeblock',
+152 +  ),
+153 +  'attached' => array(),
+154 +);
+155 +
+156 diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_header/template_for_header.mustache b/dr    upal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_header/template_for_header.mustache
+157 new file mode 100644
+158 index 0000000..0fb8fd3
+159 --- /dev/null
+160 +++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_header/template_for_header.mustache
+161 @@ -0,0 +1,16 @@
+162 +<div class="header">
+163 +       <div class="header__content">
+164 +               {{#image}}
+165 +               <img class="header__image" src="{{src}}" alt="{{alt}}" />
+166 +               {{/image}}
+167 +       </div>
+168 +       <div class="header__description">
+169 +               {{#title}}
+170 +               <div class="header__title">{{{title}}}</div>
+171 +               {{/title}}
+172 +               {{#intro}}
+173 +               <div class="header__caption">{{{intro}}}</div>
+174 +               {{/intro}}
+175 +       </div>
+176 +</div>
+177 +
+178 diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.i    nc b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.inc
+179 new file mode 100644
+180 index 0000000..65999f1
+181 --- /dev/null
+182 +++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.inc
+183 @@ -0,0 +1,55 @@
+184 +<?php
+185 +
+186 +return array(
+187 +  'renderer' => 'mustache',
+188 +  'name' => 'template_for_main_content',
+189 +  'label' => 'sample Template for main content',
+190 +  'description' => 'Simple image with text only caption.',
+191 +  'owner_type' => 'domain',
+192 +  'owner' => '2',
+193 +  'template_type' => 'General',
+194 +  'inputs' => array(
+195 +    'image_1' => array(
+196 +      'label' => 'Image of first block  - Maximum size recommended: 635px x 600px',
+197 +      'type' => 'image',
+198 +    ),
+199 +       'image_2' => array(
+200 +      'label' => 'Image of second block - Maximum size recommended: 635px x 600px',
+201 +      'type' => 'image',
+202 +    ),
+203 +       'alignment' => array(
+204 +      'label' => 'Set the alignment of the image',
+205 +      'type' => 'string',
+206 +      'description' => ' align_right / "leave it blank" ',
+207 +    ),
+208 +       'section_1' => array(
+209 +      'label' => 'Top section of the paragraph',
+210 +      'type' => 'elc_text_format',
+211 +      'description' => 'content about the product',
+212 +    ),
+213 +       'section_2' => array(
+214 +      'label' => 'Top section of the paragraph',
+215 +      'type' => 'elc_text_format',
+216 +      'description' => 'content about the product',
+217 +    ),
+218 +       'section_3' => array(
+219 +      'label' => 'Top section of the paragraph',
+220 +      'type' => 'elc_text_format',
+221 +      'description' => 'content about the product',
+222 +    ),
+223 +       'shrink_content' => array(
+224 +      'label' => 'To shrink the image please enter "yes"',
+225 +      'type' => 'string',
+226 +      'description' => 'example: yes ',
+227 +    ),
+228 +  ),
+229 +  'tags' => array(
+230 +    'device-responsive',
+231 +    'contenttype-page',
+232 +    'contenttype-elc_nodeblock',
+233 +  ),
+234 +  'attached' => array(
+235 +    'js' => $template_base_path . '/template_for_main_content.js',
+236 +  ),
+237 +);
+238 +
+239 diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.j    s b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.js
+240 new file mode 100644
+241 index 0000000..3868871
+242 --- /dev/null
+243 +++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.js
+244 @@ -0,0 +1,9 @@
+245 +$(function(){
+246 +  $('.main-content__sections').each(function() {
+247 +    if ($('.main-content__sections').text() === "") {
+248 +      $(this).addClass('mobile-hidden');
+249 +    }
+250 +
+251 +  });
+252 +
+253 +});
+254 diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.m    ustache b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.must    ache
+255 new file mode 100644
+256 index 0000000..f8a6477
+257 --- /dev/null
+258 +++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/editorial/template_for_main_content/template_for_main_content.mustache
+259 @@ -0,0 +1,22 @@
+260 +<div class="main-content clearfix">
+261 +       <div class="main-content__block1 {{{alignment}}}">
+262 +               {{#image_1}}
+263 +               <img class="main-content__image1  mobile-hidden" src="{{src}}" alt="{{alt}}" />
+264 +               {{/image_1}}
+265 +               {{#section_1}}
+266 +               <div class="main-content__sections">{{{section_1}}}</div>
+267 +               {{/section_1}}
+268 +               {{#section_2}}
+269 +               <div class="main-content__sections">{{{section_2}}}</div>
+270 +               {{/section_2}}
+271 +               {{#section_3}}
+272 +               <div class="main-content__sections">{{{section_3}}}</div>
+273 +               {{/section_3}}
+274 +       </div>
+275 +
+276 +       <div class="main-content__block2 {{{shrink_content}}}">
+277 +               {{#image_2}}
+278 +               <img class="main-content__image2" src="{{src}}" alt="{{alt}}" />
+279 +               {{/image_2}}
+280 +       </div>
+281 +</div>
+~

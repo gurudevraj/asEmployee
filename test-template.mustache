@@ -1,0 +1,22 @@
+<div class="test-template">
+    {{#image}}
+	<div class="test-template__image-block">
+        <img class="test-template__image-block__content" src="{{src}}" alt="{{alt}}" />
+	</div>
+	{{/image}}
+    <div class="test-template__caption-block">
+	    {{#title}}
+		<span class="test-template__caption-block__title"> {{{title}}} </span>
+		{{/title}}
+		{{#percentage}}
+		<span class="test-template__caption-block__percentage"> {{{percentage}}} </span>
+		{{/percentage}}
+		{{#caption-1}}
+		<p class="test-template__caption-block__caption-1"> {{{caption-1}}} </p>
+		{{/caption-1}}
+		{{#caption-2}}
+		<p class="test-template__caption-block__caption-2"> {{{caption-2}}} </p>
+		{{/caption-2}}
+	</div>    
+</div>
+	

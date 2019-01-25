@@ -1,0 +1,51 @@
+live chat link
+line no: 184
+file:  vi themes/cl_base/template_api/my_account_auth_user_panel_v1/my_account_auth_user_panel_v1.html
+
+
+first name
+line no: 17
+file:  vi themes/cl_base/template_api/loyalty_offer_invalid_unused_v1/loyalty_offer_invalid_unused_v1.mustache
+ vi themes/cl_base/template_api/loyalty_offer_invalid_used_v1/loyalty_offer_invalid_used_v1.mustache
+suscess
+
+email address text box
+line no: 60
+file: vi themes/cl_base/template_api/footer_top_v1/footer_top_v1.html
+
+lots of submit button
+2 sections
+no message text
+
+
+
+
+
+
+select location drop down
+line no: 15
+file: vi themes/cl_base/template_api/appointment_booking/appointment_booking_location_select_v1.html
+
+book now button
+line no: 13, 23
+file : themes/cl_base/template_api/appointment_booking/appointment_booking_services_formatter_v1.html
+mobile also?
+
+date & time
+line no: 81
+file: themes/cl_base/template_api/appointment_booking/appointment_booking_appointments_formatter_v1.html
+
+
+select 
+vi themes/cl_base/template_api/appointment_booking/appointment_booking_service_v1.html
+
+
+
+ques
+1 will effect on pc/mob
+your personal server perlgem
+foundation finder- next pointer ?
+us not working book apppointment
+
+
+Yzc5ZGRkNjI1

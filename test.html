@@ -1,0 +1,114 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+<style>
+
+.test-template {	
+	width: 1280px;
+	background-color: #e49a77;
+	overflow: hidden;
+	position: relative;	
+}
+
+.test-template__caption-block {	
+	width: 50%;
+	position: absolute;
+	transform: translateY(-50%);	
+	top: 50%;
+}
+
+.test-template__image-block {
+	width:50%;
+	float: right;
+}
+
+.test-template__image-block__content {
+    width: 100%;
+}
+
+.test-template__caption-block__title {
+    text-align: center;
+	font-size: 29px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.test-template__caption-block__percentage {
+    text-align: center;
+	font-size: 120px;
+	font-weight: bold;
+	margin: 0;
+} git add scss/_test_template.scss template_api/editorial
+
+
+.test-template__caption-block__caption-1 {
+    text-align: center;
+	font-size: 25px;
+	text-transform: uppercase;
+}
+
+.test-template__caption-block__caption-2 {
+    text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+@media only screen and (max-width: 768px) {
+    
+.test-template {	
+	width: 100%;
+	background-color: #e49a77;
+	overflow: hidden;
+	position: static;
+}
+
+.test-template__caption-block {	
+	width: 100%;
+	position: static;
+	transform: translateY(0);	
+	top: 0;
+}
+
+.test-template__image-block {
+	width:100%;
+	float: none;
+}
+}
+
+</style>
+
+<div class="test-template">
+    
+	
+	
+	<div class="test-template__image-block">
+	
+        <img class="test-template__image-block__content" src="8.jpg" alt="alternate-text" />
+	
+	</div>
+	
+	<div class="test-template__caption-block">
+	  
+	  
+	    
+		<p class="test-template__caption-block__title"> photo finish radiance primer </p><br/>
+		
+		
+		<p class="test-template__caption-block__percentage"> 91% </p>
+		
+		
+		<p class="test-template__caption-block__caption-1"> said it gave skin <br/> a radiant glow </p>
+		
+		
+		<p class="test-template__caption-block__caption-2"> illuminates, hydrates, blurs and <br/> evens skintone with a suble glow </p>
+		
+	</div>
+	
+</div>
+
+</body>
+
+</html>

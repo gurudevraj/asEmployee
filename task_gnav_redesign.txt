@@ -1,0 +1,308 @@
+pghadei@njldevdrp06:~/drupal/drupal-7.9/sites/rodin$ git diff --cached
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/scss/layout/_gnav-dropdown.scss b/drupal-7.9/sites/rodin/themes/rodin_base/scss/layout/_gnav-dropdown.scss
+new file mode 100644
+index 0000000..c3f796e
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/scss/layout/_gnav-dropdown.scss
+@@ -0,0 +1,77 @@
++//styles for template "gnav-dropdown__content"
++
++.gnav-dropdown__content {
++  margin: 10px;
++}
++
++//styles for template "gnav_menu_column_v1"
++.menu-column {
++  display: inline-block;
++  width: 15%;
++  letter-spacing: 2px;
++  padding: 5px;
++  float: left;
++}
++
++.menu-column__title {
++  text-transform: uppercase;
++  font-weight: bold;
++  font-size: 15px;
++}
++
++.menu-column__content {
++  font-size: 13px;
++}
++
++.menu__item:hover {
++  text-decoration: underline;
++}
++
++//styles for template "gnav_menu_tout_v1"
++
++.menu-item-image {
++  display: inline-block;
++  width: 40%;
++  position: relative;
++}
++
++.menu-item-image__content {
++  border-left: 1px solid;
++  padding: 10px 20px 0 20px;
++  width: 60%;
++  display: inline-block;
++}
++
++.menu-item-image__thumbnail {
++  width: 100%;
++}
++
++.menu-item-image__caption {
++  font-size: 10px;
++}
++
++.menu-item-image__descriptions {
++  width: 40%;
++  display: inline-block;
++  position: absolute;
++  top: 50%;
++  transform: translateY(-50%);
++}
++
++.menu-item-image__title {
++  text-transform: uppercase;
++  font-size: 20px;
++  font-weight: bold;
++}
++
++.menu-item-image__subcopy1 {
++  font-size: 13px;
++}
++
++.menu-item-image__subcopy2 {
++  font-size: 15px;
++  text-decoration: underline;
++  text-transform: uppercase;
++  display: inline-block;
++  margin-top: 10px;
++}
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_column_v1/gnav_menu_column_v1.inc b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_column_v1/gnav_menu_column_v1.inc
+new file mode 100644
+index 0000000..9f98c44
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_column_v1/gnav_menu_column_v1.inc
+@@ -0,0 +1,41 @@
++<?php
++
++return array(
++  'name' => 'gnav_menu_column_v1',
++  'label' => 'Gnav - Menu Column - v1',
++  'description' => 'A menu reference field and an optional title field.',
++  'owner_type' => 'domain',
++  'owner' => '2',
++  'template_type' => 'General',
++  'tags' => array(
++    'contenttype-page',
++    'contenttype-collection',
++    'contenttype-elc_nodeblock',
++    'device-responsive',
++  ),
++  'inputs' => array(
++    'title' => array(
++      'label' => 'Title (no link)',
++      'type' => 'string',
++      'description' => 'Optional',
++    ),
++    'title_link' => array(
++      'label' => 'Title (with link)',
++      'type' => 'link_v2',
++    ),
++    'wrapper_class' => array(
++      'type' => 'string',
++      'label' => 'Wrapper Class',
++    ),
++    'content' => array(
++      'label' => 'Menu',
++      'type' => 'noderef_drop',
++      'description' => '',
++      'content_types' => array(
++        'elc_nodeblock' => 'elc_nodeblock',
++        'menu' => 'menu',
++      ),
++    ),
++  ),
++);
++
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_column_v1/gnav_menu_column_v1.mustache b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_column_v1/gnav_menu_column_v1.mustache
+new file mode 100644
+index 0000000..e4eaa51
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_column_v1/gnav_menu_column_v1.mustache
+@@ -0,0 +1,13 @@
++<div class="menu-column js-gnav-menu-column{{# wrapper_class }} {{ wrapper_class }}{{/ wrapper_class }}">
++  {{# title }}
++    <div class="menu-column__title"><span class="menu-column__title-wrap">{{{ title }}}</span></div>
++  {{/ title }}
++  {{# title_link }}
++    <div class="menu-column__title">
++      {{# html }}class=menu-column__title-wrap{{/ html }}
++    </div>
++  {{/ title_link }}
++  <div class="menu-column__content">
++    {{{ content }}}
++  </div>
++</div>
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_formatter_v1/gnav_menu_formatter_v1.inc b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_formatter_v1/gnav_menu_formatter_v1.inc
+new file mode 100644
+index 0000000..8bb5f6f
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_formatter_v1/gnav_menu_formatter_v1.inc
+@@ -0,0 +1,24 @@
++<?php
++
++return array(
++  'name' => 'gnav_menu_formatter',
++  'label' => 'Gnav - Menu formatter - v1',
++  'description' => 'Formatter for gnav dropdowns.',
++  'owner_type' => 'domain',
++  'owner' => '2',
++  'template_type' => 'General',
++  'tags' => array(
++    'contenttype-elc_nodeblock',
++    'device-responsive',
++    'formatter',
++  ),
++  'inputs' => array(
++    'wrapper_class' => array(
++      'type' => 'string',
++      'label' => 'Wrapper Class',
++    ),
++  ),
++  'attached' => array(
++
++  ),
++);
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_formatter_v1/gnav_menu_formatter_v1.mustache b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_formatter_v1/gnav_menu_formatter_v1.mustache
+new file mode 100644
+index 0000000..7fc120c
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_formatter_v1/gnav_menu_formatter_v1.mustache
+@@ -0,0 +1,8 @@
++<section class="gnav-dropdown clearfix{{# wrapper_class }} {{ wrapper_class }}{{/ wrapper_class }}>
++  <div class="gnav-dropdown__arrow"></div>
++  <div class="gnav-dropdown__content">
++    {{# templates }}
++      {{{ rendered }}}
++    {{/ templates }}
++  </div>
++</section>
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.inc b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.inc
+new file mode 100644
+index 0000000..5d12b18
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.inc
+@@ -0,0 +1,53 @@
++<?php
++
++return array(
++  'name' => 'gnav_menu_tout_v1',
++  'label' => 'Gnav - Menu Tout - v1',
++  'description' => 'A tout image with caption and description',
++  'owner_type' => 'domain',
++  'owner' => '2',
++  'template_type' => 'General',
++  'tags' => array(
++    'contenttype-elc_nodeblock',
++    'device-responsive',
++  ),
++  'inputs' => array(
++    'url' => array(
++      'type' => 'url_v2',
++      'label' => '(Optional) URL',
++      'description' => 'Link to a URL on the tout images and text',
++    ),
++    'image' => array(
++      'type' => 'image',
++      'label' => 'Tout Image',
++    ),
++    'caption' => array(
++      'type' => 'elc_text_format',
++      'label' => 'caption for the image',
++    ),
++    'enable_description' => array(
++      'type' => 'checkbox_value',
++      'label' => 'To enable the description part which is situated right side to the tout image, Click here',
++    ),
++    'tout_header' => array(
++      'type' => 'string',
++      'label' => 'Tout Header',
++    ),
++    'tout_subcopy_1' => array(
++      'type' => 'elc_text_format',
++      'label' => 'Tout Subcopy 1',
++    ),
++    'tout_subcopy_2' => array(
++      'type' => 'elc_text_format',
++      'label' => 'Tout Subcopy 2',
++    ),
++    'right_side_description' => array(
++      'type' => 'markup',
++      'markup' => '<br><u>Note:</u>Tout Header, Tout Subcopy 1, and Tout Subcopy 2 are to be placed right side to the tout image',
++    ),
++  ),
++  'attached' => array(
++    'js' => $template_base_path . '/gnav_menu_tout_v1.js',
++  ),
++);
++
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.js b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.js
+new file mode 100644
+index 0000000..104524e
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.js
+@@ -0,0 +1,15 @@
++$(function() {
++alert("hi");
++  if($(".menu-item-image").hasClass("enable_description")) {
++    $(".menu-item-image__description").css({ "display": "inline-block","width": "40%"});
++    $(this).css("width","40%");
++    $(".menu-item-image__content")..css("width","60%");
++alert("hello");
++}
++  else {
++     $(".menu-item-image__description").css("display","none");
++     $(this).css("width","25%");
++     $(".menu-item-image__content").css("width","100%");
++     alert("hi");
++  }
++});
+diff --git a/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.mustache b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.mustache
+new file mode 100644
+index 0000000..ff1077f
+--- /dev/null
++++ b/drupal-7.9/sites/rodin/themes/rodin_base/template_api/navigation/gnav_menu_tout_v1/gnav_menu_tout_v1.mustache
+@@ -0,0 +1,27 @@
++<div class="gnav-menu-tout-v1 menu-item-image{{#enable_description}} enable_description{{/enable_description}}">
++  {{#url}}
++    <a class="menu-item-image__link" href="{{href}}">
++  {{/url}}
++  <div class="menu-item-image__content">
++    {{#image}}
++      <img class="menu-item-image__thumbnail" src="{{src}}" alt="{{alt}}" />
++    {{/image}}
++    {{#caption}}
++      <div class="menu-item-image__caption">{{{caption}}}</div>
++    {{/caption}}
++  </div>
++  <div class="menu-item-image__descriptions">
++    {{#tout_header}}
++      <div class="menu-item-image__title">{{{tout_header}}}</div>
++    {{/tout_header}}
++    {{#tout_subcopy_1}}
++      <div class="menu-item-image__subcopy1">{{{tout_subcopy_1}}}</div>
++    {{/tout_subcopy_1}}
++    {{#tout_subcopy_2}}
++      <div class="menu-item-image__subcopy2">{{{tout_subcopy_2}}}</div>
++    {{/tout_subcopy_2}}
++  </div>
++  {{#url}}
++    </a>
++  {{/url}}
++</div>
+(END)

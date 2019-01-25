@@ -1,0 +1,67 @@
+.test-template {	
+	width: 1280px;
+	background-color: #e49a77;
+	overflow: hidden;
+	position: relative;	
+}
+
+.test-template__caption-block {	
+	width: 50%;
+	position: absolute;
+	transform: translateY(-50%);	
+	top: 50%;
+}
+
+.test-template__image-block {
+	width:50%;
+	float: right;
+}
+
+.test-template__image-block__content {
+    width: 100%;
+}
+
+.test-template__caption-block__title {
+    text-align: center;
+	font-size: 29px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.test-template__caption-block__percentage {
+    text-align: center;
+	font-size: 120px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.test-template__caption-block__caption-1 {
+    text-align: center;
+	font-size: 25px;
+	text-transform: uppercase;
+}
+
+.test-template__caption-block__caption-2 {
+    text-align: center;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+@media only screen and (max-width: 768px) {
+    
+.test-template {	
+	width: 100%;
+	position: static;
+}
+
+.test-template__caption-block {	
+	width: 100%;
+	position: static;
+	transform: none;	
+}
+
+.test-template__image-block {
+	width:100%;
+	float: none;
+}
+}

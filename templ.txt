@@ -1,0 +1,1 @@
+pghadei@njldevdrp06:~/drupal/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/hero_large_mpp_v1$ vi hero_large_mpp_v1.inc

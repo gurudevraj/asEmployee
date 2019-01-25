@@ -1,0 +1,5 @@
+js file should be seperated ?
+slick show slide 3/5 ?
+z index in zip balm
+class.length === 1
+add class / remove class or inline style using js

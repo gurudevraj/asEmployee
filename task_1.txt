@@ -1,0 +1,165 @@
+diff --git a/drupal-7.9/sites/smashbox/themes/smashbox_base/scss/_test_template.scss b/drupal-7.9/sites/smashbox/themes/smashbox_base/scss/_test_template.scss
+new file mode 100644
+index 0000000..8185d12
+--- /dev/null
++++ b/drupal-7.9/sites/smashbox/themes/smashbox_base/scss/_test_template.scss
+@@ -0,0 +1,72 @@
++.test-template {
++       width: 1280px;
++       background-color: #e49a77;
++       overflow: hidden;
++       position: relative;
++        margin: 10px auto;
++}
++
++.test-template__caption-block {
++       width: 50%;
++       position: absolute;
++       transform: translateY(-50%);
++       top: 50%;
++}
++
++.test-template__image-block {
++       width:50%;
++       float: right;
++}
++
++.test-template__image-block__content {
++    width: 100%;
++}
++
++.test-template__caption-block__title {
++    text-align: center;
++       font-size: 29px;
++       font-weight: bold;
++       text-transform: uppercase;
++        line-height: 1;
++        margin: 30px 0;
++}
++
++.test-template__caption-block__percentage {
++    text-align: center;
++       font-size: 120px;
++       font-weight: bold;
++        margin: 100px 0;
++}
++
++.test-template__caption-block__caption-1 {
++    text-align: center;
++       font-size: 25px;
++       text-transform: uppercase;
++        line-height: 1;
++}
++
++.test-template__caption-block__caption-2 {
++    text-align: center;
++       font-size: 20px;
++       text-transform: uppercase;
++        line-height: 1;                             
++}
++
++.test-template__caption-block__caption-2 {
++    text-align: center;
++       font-size: 20px;
++       text-transform: uppercase;
++        line-height: 1;
++}
++
++@media only screen and (max-width: 768px) {
++
++.test-template {
++       width: 100%;
++       position: static;
++}
++
++.test-template__caption-block {
++       width: 100%;
++       position: static;
++       transform: none;
++}
++
++.test-template__image-block {
++       width:100%;
++       float: none;
++}
++}
+@                       
+
+diff --git a/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/test_template/test_template.inc b/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/test_template/test_template.inc
+new file mode 100644
+index 0000000..bb0f87c
+--- /dev/null
++++ b/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/test_template/test_template.inc
+@@ -0,0 +1,43 @@
++<?php
++
++return array(
++  'renderer' => 'mustache',
++  'name' => 'test_template',
++  'label' => 'Test-Template with Image & Caption',
++  'description' => 'Simple image with text only caption.',
++  'owner_type' => 'domain',
++  'owner' => '2',
++  'template_type' => 'General',
++  'inputs' => array(
++    'image' => array(
++      'label' => 'Image - Maximum size recommended: 635px x 600px',
++      'type' => 'image',
++    ),
++       'title' => array(
++      'label' => 'Title of Image',
++      'type' => 'string',
++      'description' => 'example: primer / photo finish',
++    ),
++       'percentage' => array(
++      'label' => 'percentage of radiance glow',
++      'type' => 'string',
++      'description' => 'example: 90% / 95% ',
++    ),
++    'caption-1' => array(
++      'label' => 'Caption Row 1',
++      'type' => 'string',
++      'description' => 'example: Be Legendary primer ',
++    ),
++    'caption-2' => array(
++      'label' => 'Caption Row 2',
++      'type' => 'string',
++      'description' => 'example: Shot at Smashbox Studios, L.A.',
++    ),
++  ),
++  'tags' => array(
++    'device-responsive',
++    'contenttype-page',
++    'contenttype-elc_nodeblock',
++  ),
++  'attached' => array(),
++);
+diff --git a/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/test_template/test_template.mustache b/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/test_template/test_template.mustache
+new file mode 100644
+index 0000000..ff0b3f0
+--- /dev/null
++++ b/drupal-7.9/sites/smashbox/themes/smashbox_base/template_api/editorial/test_template/test_template.mustache
+@@ -0,0 +1,22 @@
++<div class="test-template">
++    {{#image}}
++    <div class="test-template__image-block">
++        <img class="test-template__image-block__content" src="{{src}}" alt="{{alt}}" />
++    </div>
++    {{/image}}
++    <div class="test-template__caption-block">
++           {{#title}}
++           <p class="test-template__caption-block__title"> {{{title}}} </p>
++           {{/title}}
++           {{#percentage}}
++           <p class="test-template__caption-block__percentage"> {{{percentage}}} </p>
++           {{/percentage}}
++           {{#caption-1}}
++           <p class="test-template__caption-block__caption-1"> {{{caption-1}}} </p>
++           {{/caption-1}}
++           {{#caption-2}}
++           <p class="test-template__caption-block__caption-2"> {{{caption-2}}} </p>
++           {{/caption-2}}
++    </div>
++</div>
++
+~

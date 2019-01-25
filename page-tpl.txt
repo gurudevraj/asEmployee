@@ -1,0 +1,150 @@
+<?php
+
+/**
+ * @file
+ * Output for main HTML page content.
+ */
+
+$terms_banner   = render($page['terms_banner']);
+$utility_links   = render($page['utility_links']);
+$sandwich_links   = render($page['sandwich_links']);
+$branding        = render($page['branding']);
+$navigation      = render($page['navigation']);
+$help            = render($page['help']);
+$content         = render($page['content']);
+$footer          = render($page['footer']);
+$below_footer    = render($page['below_footer']);
+?>
+
+<?php print elc_common_get_cms_api_marker('header'); ?>
+
+<header class="site-header js-site-header">
+
+  <?php // Utilities bar, becomes sticky and gets stuff appended with js ?>
+  <?php print elc_common_get_cms_api_marker('toolbar'); ?> <?php print render($page['page_top']); ?> <?php print elc_common_get_cms_api_marker('toolbar', TRUE); ?>
+
+  <div class="site-header__main js-site-header__main">
+
+    <div class="site-header__section site-header__section--terms-banner js-site-header-terms-banner">
+      <?php print $terms_banner; ?>
+    </div>
+ <div class="site-header__gnav clearfix">
+      <div class="site-header__section site-header__section--nav js-site-header-section-nav">
+        <?php print $navigation; ?>
+      </div>
+      <div class="site-header__section site-header__section--branding">
+        <?php print $branding; ?>
+      </div>
+      <div class="site-header__section site-header__section--utilities js-site-header-section-utilities">
+        <?php print $utility_links; ?>
+      </div>
+      <div class="site-header__section site-header__section--sandwich-links hidden">
+        <?php print $sandwich_links; ?>
+      </div>
+    </div>
+
+  </div>
+
+</header>
+
+<?php print elc_common_get_cms_api_marker('header', TRUE); ?>
+
+<!-- Begin site content here -->
+<div class="site-content">
+  <?php if ($messages): ?>
+    <div id="console">
+      <?php print $messages; ?>
+    </div>
+  <?php endif; ?>
+ <?php print $content; ?>
+</div>
+<!-- /End site content here -->
+
+<?php print elc_common_get_cms_api_marker('footer'); ?>
+
+<div class="site-footer">
+  <footer class="footer">
+    <?php print $footer; ?>
+  </footer>
+</div>
+
+<?php print $below_footer; ?>
+
+<?php print elc_common_get_cms_api_marker('footer', TRUE); ?>
+
+
+
+
+
+
+
+
+
+
+<div class="basic-menuref-v1 menu-ref js-menu-ref{{#has_menu_ref_children}} menu-ref--has-children{{/has_menu_ref_children}}">
+  {{# title }}
+  <h3 class="menu-ref__title"><span class="menu-ref__title-wrap">{{#url}}<a href="{{href}}" class="menu-ref__link">{{/url}}{{{title}}}{{#url}}</a>{{/url}}</span></h3>
+  {{/ title }}
+  {{# content }}
+  <div class="menu-ref__content">
+    {{{ content }}}
+  </div>
+  {{/ content }}
+</div>
+
+
+
+
+(function($) {
+  Drupal.behaviors.gnav_dropdown_formatter_v1 = {
+    attach: function(context) {
+      var $sectionNav = $('.gnav-dropdown-formatter', context);
+      var $gnavMenuItem = $('.js-gnav-menu-item', $sectionNav);
+      var $header = $('.js-site-header__main', context);
+      var alt_class = 'is-alternate';
+      var activeclass = 'js-active';
+      var nav_open = false;
+      var $body = $('body', context);
+
+//      $('.gnav-menu-item__content').hide();
+        $gnavMenuItem.on('click mouseenter', function() {
+        if (!$(this).hasClass('gnav-menu-item--has-children')) {
+          return;
+        }
+        $('.' + activeclass, $header).removeClass(activeclass);
+        $(this).addClass(activeclass);
+        $gnavMenuItem.find('.gnav-menu-item__content').hide();
+        $(document).trigger('navOpen');
+        $(this).find('.gnav-menu-item__content').show();
+      });
+
+      $header.on('mouseenter', '.js-gnav-menu-item:not(.gnav-menu-item--has-children)', function() {
+          $(this).addClass('has-hover');
+          if (nav_open) {
+            $(document).trigger('navClose');
+          }
+      });
+
+      $header.on('mouseleave', '.js-gnav-menu-item:not(.gnav-menu-item--has-children)', function() {
+        $(this).removeClass('has-hover');
+      });
+      $header.on('mouseleave', function() {
+        $(document).trigger('navClose');
+      });
+
+      $(document).on('navOpen', function() {
+        $header.addClass(alt_class);
+        $body.addClass('gnav-active');
+        nav_open = true;
+      });
+
+      $(document).on('navClose', function() {
+        $header.removeClass(alt_class);
+        $body.removeClass('gnav-active');
+        $gnavMenuItem.find('.gnav-menu-item__content').hide();
+        $('.' + activeclass, $header).removeClass(activeclass);
+        nav_open = false;
+      });
+    }
+  }
+})(jQuery);

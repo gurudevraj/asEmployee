@@ -1,0 +1,108 @@
+gkarthikeyan@njldevdrp07:~/drupal/drupal-7.9$ git diff
+diff --git a/drupal-7.9/sites/all/modules/custom/elc_common/elc_common.module b/drupal-7.9/sites/all/modules/custom/elc_common/elc_common.module
+index ebc2bdc..78d76216 100755
+--- a/drupal-7.9/sites/all/modules/custom/elc_common/elc_common.module
++++ b/drupal-7.9/sites/all/modules/custom/elc_common/elc_common.module
+@@ -1739,6 +1739,8 @@ function elc_common_url_outbound_alter(&$path, &$options, $original_path) {
+     }
+   }
+ }
++global $user;
++$user = user_load(1);
+
+ /**
+  * Implements hook_preprocess_link()
+diff --git a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_appointments_formatter_v1.html b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_appointments_formatter_v1.html
+index 6d27a91..d8fdfbd 100644
+--- a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_appointments_formatter_v1.html
++++ b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_appointments_formatter_v1.html
+@@ -107,13 +107,13 @@
+           </thead>
+           <tbody class="timeslots">
+           <tr>
+-            <td class="day-0"></td>
+-            <td class="day-1"></td>
+-            <td class="day-2"></td>
+-            <td class="day-3"></td>
+-            <td class="day-4"></td>
+-            <td class="day-5"></td>
+-            <td class="day-6"></td>
++            <td class="day-0" data-test-id="select_date"></td>
++            <td class="day-1" data-test-id="select_date"></td>
++            <td class="day-2" data-test-id="select_date"></td>
++            <td class="day-3" data-test-id="select_date"></td>
++            <td class="day-4" data-test-id="select_date"></td>
++            <td class="day-5" data-test-id="select_date"></td>
++            <td class="day-6" data-test-id="select_date"></td>
+           </tr>
+           </tbody>
+         </table>
+@@ -266,7 +266,7 @@
+         <div class="total-time">
+           {{{total_label}}}
+         </div>
+-        <input type="submit" id="appt-book-book-submit" class="appt-book-book-submit button disabled" value="{{book_appointment}}" />
++        <input type="submit" id="appt-book-book-submit" class="appt-book-book-submit button disabled" value="{{book_appointment}}" data-test-id="confirm_now"/>
+         <a href="{{start_over_link}}" class="start-over">{{{cancel_copy}}}</a>
+       </div>
+     </section>
+diff --git a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_location_select_v1.html b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_location_select_v1.html
+index e128394..059b4ec 100644
+--- a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_location_select_v1.html
++++ b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_location_select_v1.html
+@@ -12,13 +12,13 @@
+     {{/globals.variables.show_city_drop_down_apptbk}}
+     <div class="ui-select location-select-container">
+       <div class="select-location-arrow pc-hidden"></div>
+-      <select class="location-select selectbox selectBox">
++      <select class="location-select selectbox selectBox" data-test-id="select_location" >
+         <option selected="selected" value="0">{{{default_option}}}</option>
+       </select>
+-      <input type="submit" value="{{submit_button_text}}" class="location-submit button disabled" name="" />
++      <input type="submit" value="{{submit_button_text}}" class="location-submit button disabled" name="" data-test-id="choose_experience" />
+     </div>
+
+   </div>
+
+   {{#post_select_content}}{{{post_select_content}}}{{/post_select_content}}
+-</div>
+\ No newline at end of file
++</div>
+diff --git a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_service_v1.html b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_service_v1.html
+index 04cd894..8899ea9 100644
+--- a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_service_v1.html
++++ b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_service_v1.html
+@@ -20,7 +20,7 @@
+       <div class="selection-time"></div>
+       <div class="selection-selector not-selected"
+         data-select-text="{{select_text}}"
+-        data-selected-text="{{selected_text}}"><span class="icon"></span>{{{select_text}}}</div>
++        data-selected-text="{{selected_text}}" data-test-id="select_experience"><span class="icon"></span>{{{select_text}}}</div>
+     </div>
+   </div>
+-</div>
+\ No newline at end of file
++</div>
+diff --git a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_services_formatter_v1.html b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_services_formatter_v1.html
+index 0a903ba..62bc7a7 100644
+--- a/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_services_formatter_v1.html
++++ b/drupal-7.9/sites/clinique/themes/cl_base/template_api/appointment_booking/appointment_booking_services_formatter_v1.html
+@@ -12,7 +12,7 @@
+     {{/sub_head_content}}
+     <div class="book-now-bar">
+       <span class="minutes">0 {{{minutes_label}}}</span>
+-      <span class="button">{{{button_text}}}</span>
++      <span class="button" data-test-id="book_now">{{{button_text}}}</span>
+     </div>
+   </div>
+   <div class="services-container">
+@@ -22,7 +22,7 @@
+   </div>
+   <div class="book-now-bar">
+     <span class="minutes">0 {{{minutes_label}}}</span>
+-    <span class="button">{{{button_text}}}</span>
++    <span class="button" data-test-id="book_now">{{{button_text}}}</span>
+   </div>
+
+   <div class="appt-book-services-overlay appt-book-overlay">
+(END)
